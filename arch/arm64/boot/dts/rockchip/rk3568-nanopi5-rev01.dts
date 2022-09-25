@@ -12,7 +12,7 @@
 #include "rk3568-nanopi5-common.dtsi"
 
 / {
-	model = "FriendlyElec NanoPi R5S";
+	model = "FriendlyElec NanoPi R5S +FPC";
 	compatible = "friendlyelec,nanopi-r5s", "rockchip,rk3568";
 
 	aliases {
@@ -90,6 +90,14 @@
 		startup-delay-us = <5000>;
 		vin-supply = <&vcc3v3_sysp>;
 	};
+
+    pps {
+        compatible = "pps-gpio";
+        //pinctrl-names = "default";
+        //pinctrl-0 = <&pwm15m0_pins>;
+        gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+        status = "okay";
+    };
 };
 
 &combphy0_us {
@@ -290,3 +298,34 @@
 		};
 	};
 };
+
+// Enable the NanoPi R5S FPC pin header
+&uart5 {
+	status = "okay";
+    pinctrl-0 = <&uart5m1_xfer>;
+};
+&uart7 {
+	status = "disabled"; // conflcits with uart7
+	pinctrl-0 = <&uart7m1_xfer>;
+};
+&uart9 {
+	status = "okay";
+	pinctrl-0 = <&uart9m1_xfer>;
+};
+
+// Disable these so UART9 is available
+&pwm12 {
+	status = "disabled"; // conflicts with uart9
+	pinctrl-0 = <&pwm12m1_pins>;
+};
+&pwm13 {
+	status = "disabled"; // conflicts with uart9
+	pinctrl-0 = <&pwm13m1_pins>;
+};
+&pwm14 {
+	status = "okay";
+};
+&pwm15 {
+	status = "disabled";
+};
+
