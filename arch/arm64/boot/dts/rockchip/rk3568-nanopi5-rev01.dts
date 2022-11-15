@@ -91,11 +91,14 @@
 		vin-supply = <&vcc3v3_sysp>;
 	};
 
-    pps {
+    pps_3_1: pps-gpio3-1 {
         compatible = "pps-gpio";
-        //pinctrl-names = "default";
-        //pinctrl-0 = <&pwm15m0_pins>;
-        gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+        gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
+        status = "okay";
+    };
+    pps_3_20: pps-gpio3-20 {
+        compatible = "pps-gpio";
+        gpios = <&gpio3 20 GPIO_ACTIVE_HIGH>;
         status = "okay";
     };
 };
@@ -302,7 +305,7 @@
 // Enable the NanoPi R5S FPC pin header
 &uart5 {
 	status = "okay";
-    pinctrl-0 = <&uart5m1_xfer>;
+	pinctrl-0 = <&uart5m1_xfer>;
 };
 &uart7 {
 	status = "disabled"; // conflcits with uart7

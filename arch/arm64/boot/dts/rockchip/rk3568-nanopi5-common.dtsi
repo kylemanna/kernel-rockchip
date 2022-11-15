@@ -19,7 +19,7 @@
 		     "rockchip,rk3568";
 
 	chosen: chosen {
-		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 coherent_pool=1m";
+		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 coherent_pool=1m nohz=off";
 	};
 
 	aliases {
